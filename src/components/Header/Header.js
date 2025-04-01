@@ -3,7 +3,7 @@ import '../../styles/global.css';
 
 export default function Header() {
     return (
-        <header class='header-container'>
+        <header className='header-container'>
             <h1>AI Hero</h1>
             <nav>
                 <Link to='/' >Home</Link>

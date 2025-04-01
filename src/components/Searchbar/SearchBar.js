@@ -5,16 +5,23 @@ import '../../styles/global.css';
 export default function SearchBar() {
     const [query, setQuery] = useState('');
     const navigate = useNavigate();
+
     const handleSearch = (e) => {
-        setQuery(e.target.value);
+        e.preventDefault();
+        if (query.trim()) {
+            navigate(`/search?query=${encodeURIComponent(query)}`);
+        }
     };
-    const handleSubmit = () => {
-        navigate(`/search?q=${query}`);
-    };
+
     return (
-        <div>
-            <input type='text' placeholder='Search tutorials...' value={query} onChange={handleSearch} />
-            <button onClick={handleSubmit}>Search</button>
-        </div>
+        <form onSubmit={handleSearch}>
+            <input 
+                type="text" 
+                placeholder="Search tutorials..." 
+                value={query} 
+                onChange={(e) => setQuery(e.target.value)} 
+            />
+            <button type="submit">Search</button>
+        </form>
     );
 }
